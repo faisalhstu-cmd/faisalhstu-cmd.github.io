@@ -3,58 +3,297 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Faisal | Automation Engineer (n8n & AI)</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f4f7f6; }
-        header { text-align: center; padding: 50px 0; background: #2c3e50; color: white; border-radius: 10px; margin-bottom: 30px; }
-        h1 { margin: 0; font-size: 2.5em; }
-        .tagline { font-size: 1.2em; opacity: 0.8; }
-        .project-card { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 30px; }
-        .project-title { color: #2980b9; margin-top: 0; }
-        .skills-tag { display: inline-block; background: #e1f5fe; color: #0288d1; padding: 5px 12px; border-radius: 20px; font-size: 0.8em; margin-right: 5px; font-weight: bold; }
-        .contact-btn { display: inline-block; background: #27ae60; color: white; padding: 12px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 20px; }
-        footer { text-align: center; margin-top: 50px; font-size: 0.9em; color: #7f8c8d; }
+    <title>Your Name | n8n Automation Expert</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#8A2BE2', // n8n brand purple
+                        secondary: '#1E293B',
+                        accent: '#6366F1'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            }
+        }
     </style>
 </head>
-<body>
+<body class="bg-gray-50 font-sans text-secondary">
 
-<header>
-    <h1>Faisal</h1>
-    <p class="tagline">n8n & AI Automation Engineer</p>
-    <p>I build systems that save time and scale businesses.</p>
-</header>
+    <!-- Sticky WhatsApp Contact Button -->
+    <a href="https://wa.me/yourphonenumber" target="_blank" class="fixed right-6 bottom-6 bg-green-500 text-white rounded-full p-4 shadow-lg hover:bg-green-600 transition-all z-50">
+        <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
 
-<section id="projects">
-    <h2>Featured Automations</h2>
-
-    <!-- Project 1: SEO Audit -->
-    <div class="project-card">
-        <h3 class="project-title">AI-Powered SEO Audit & Outreach Engine</h3>
-        <p><strong>The Problem:</strong> Agencies spend hours manually auditing websites before sending sales proposals.</p>
-        <p><strong>The Solution:</strong> An n8n workflow that scrapes a URL, uses <strong>Google Gemini AI</strong> to analyze technical metadata and content quality, and drafts a personalized outreach email.</p>
-        
-        <div>
-            <span class="skills-tag">n8n</span>
-            <span class="skills-tag">Google Gemini AI</span>
-            <span class="skills-tag">Web Scraping</span>
-            <span class="skills-tag">JSON Transformation</span>
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-sm sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-primary text-2xl font-bold">n8n<span class="text-secondary">Automate</span></span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="text-gray-700 hover:text-primary transition-colors">About</a>
+                    <a href="#case-studies" class="text-gray-700 hover:text-primary transition-colors">Case Studies</a>
+                    <a href="#testimonials" class="text-gray-700 hover:text-primary transition-colors">Testimonials</a>
+                    <a href="#contact" class="bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors">Hire Me</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button class="text-gray-700">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
         </div>
-        
-        <p><em>Result: Reduced audit time from 45 minutes to 30 seconds per lead.</em></p>
-    </div>
+    </nav>
 
-    <!-- Add more project cards here as you build them! -->
-</section>
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-primary/5 to-white py-16 md:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2">
+                    <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold text-secondary leading-tight text-shadow">
+                        Build Scalable <span class="text-primary">n8n Automations</span> For Your Business
+                    </h1>
+                    <p class="mt-6 text-lg text-gray-600">
+                        I design and implement custom n8n workflows to eliminate manual tasks, reduce errors, and save your team hundreds of hours every month.
+                    </p>
+                    <div class="mt-8 flex flex-wrap gap-4">
+                        <a href="#case-studies" class="bg-primary text-white px-8 py-3 rounded-lg hover:bg-primary/90 transition-colors">
+                            View My Work
+                        </a>
+                        <a href="https://wa.me/yourphonenumber" target="_blank" class="border border-primary text-primary px-8 py-3 rounded-lg hover:bg-primary/5 transition-colors">
+                            <i class="fab fa-whatsapp mr-2"></i> Contact Now
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="bg-white rounded-xl shadow-xl p-4">
+                        <img src="https://via.placeholder.com/600x400/8A2BE2/ffffff?text=n8n+Workflow+Preview" alt="n8n Workflow Preview" class="rounded-lg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<section style="text-align: center;">
-    <h2>Ready to Automate?</h2>
-    <p>I am currently accepting new projects and collaborations.</p>
-    <a href="mailto:flowgrammerfaisal@gmail.com" class="contact-btn">Get In Touch</a>
-</section>
+    <!-- Expertise Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">My n8n Expertise</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="card-hover bg-gray-50 p-6 rounded-xl">
+                    <div class="text-primary text-3xl mb-4"><i class="fas fa-sitemap"></i></div>
+                    <h3 class="text-xl font-semibold mb-2">Workflow Design</h3>
+                    <p class="text-gray-600">Custom end-to-end n8n workflow development tailored to your business processes</p>
+                </div>
+                <div class="card-hover bg-gray-50 p-6 rounded-xl">
+                    <div class="text-primary text-3xl mb-4"><i class="fas fa-plug"></i></div>
+                    <h3 class="text-xl font-semibold mb-2">Integration</h3>
+                    <p class="text-gray-600">Connect 1000+ apps including CRM, ERP, e-commerce platforms and custom APIs</p>
+                </div>
+                <div class="card-hover bg-gray-50 p-6 rounded-xl">
+                    <div class="text-primary text-3xl mb-4"><i class="fas fa-shield-alt"></i></div>
+                    <h3 class="text-xl font-semibold mb-2">Maintenance</h3>
+                    <p class="text-gray-600">Ongoing workflow monitoring, debugging and optimization services</p>
+                </div>
+                <div class="card-hover bg-gray-50 p-6 rounded-xl">
+                    <div class="text-primary text-3xl mb-4"><i class="fas fa-chart-line"></i></div>
+                    <h3 class="text-xl font-semibold mb-2">Optimization</h3>
+                    <p class="text-gray-600">Audit and improve existing workflows for better performance and reliability</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<footer>
-    <p>&copy; 2024 FaisalAutomate.me | Built with n8n & GitHub</p>
-</footer>
+    <!-- Case Studies Section -->
+    <section id="case-studies" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">n8n Workflow Case Studies</h2>
+            
+            <div class="space-y-12">
+                <!-- Case Study 1 -->
+                <div class="card-hover bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="flex flex-col md:flex-row">
+                        <div class="md:w-1/2 p-8">
+                            <span class="text-xs font-semibold text-primary uppercase tracking-wider">E-commerce</span>
+                            <h3 class="text-2xl font-bold mt-2 mb-4">Order Fulfillment Automation</h3>
+                            <p class="text-gray-600 mb-4">
+                                <strong>Problem:</strong> A US-based Shopify store was manually processing 200+ orders daily, leading to delays and human errors.
+                            </p>
+                            <p class="text-gray-600 mb-4">
+                                <strong>Solution:</strong> Built an n8n workflow that automatically:
+                                <ul class="list-disc list-inside mt-2 space-y-1">
+                                    <li>Validates customer orders</li>
+                                    <li>Sends details to fulfillment partner API</li>
+                                    <li>Generates shipping labels</li>
+                                    <li>Sends automated tracking updates to customers</li>
+                                </ul>
+                            </p>
+                            <p class="text-gray-800 font-semibold mt-4">
+                                Results: Reduced order processing time by 92% | Eliminated manual errors | Saved 15+ hours/week
+                            </p>
+                        </div>
+                        <div class="md:w-1/2">
+                            <img src="https://via.placeholder.com/600x400/8A2BE2/ffffff?text=E-commerce+Order+Workflow" alt="E-commerce Order Workflow" class="h-full w-full object-cover">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Case Study 2 -->
+                <div class="card-hover bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="flex flex-col md:flex-row-reverse">
+                        <div class="md:w-1/2 p-8">
+                            <span class="text-xs font-semibold text-primary uppercase tracking-wider">Lead Generation</span>
+                            <h3 class="text-2xl font-bold mt-2 mb-4">Lead Nurturing Workflow</h3>
+                            <p class="text-gray-600 mb-4">
+                                <strong>Problem:</strong> A UK SaaS company was losing 40% of leads due to slow follow-up responses.
+                            </p>
+                            <p class="text-gray-600 mb-4">
+                                <strong>Solution:</strong> Implemented an n8n workflow that:
+                                <ul class="list-disc list-inside mt-2 space-y-1">
+                                    <li>Captures leads from landing pages</li>
+                                    <li>Qualifies leads based on predefined criteria</li>
+                                    <li>Sends personalized follow-up sequences</li>
+                                    <li>Routes hot leads to sales team in real-time</li>
+                                </ul>
+                            </p>
+                            <p class="text-gray-800 font-semibold mt-4">
+                                Results: 35% increase in lead conversion | 100% follow-up within 5 minutes | Reduced sales team admin work by 60%
+                            </p>
+                        </div>
+                        <div class="md:w-1/2">
+                            <img src="https://via.placeholder.com/600x400/8A2BE2/ffffff?text=Lead+Nurturing+Workflow" alt="Lead Nurturing Workflow" class="h-full w-full object-cover">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add more case studies similarly -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">What My Clients Say</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="card-hover bg-gray-50 p-8 rounded-xl">
+                    <div class="text-primary text-3xl mb-4"><i class="fas fa-quote-left"></i></div>
+                    <p class="text-gray-600 mb-6">
+                        "Working with this n8n expert transformed our business operations. The workflows he built saved our team over 20 hours every week and eliminated costly errors. Highly recommended!"
+                    </p>
+                    <div class="flex items-center">
+                        <img src="https://ui-avatars.com/api/?name=John+Doe&background=random" alt="John Doe" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold">John Doe</h4>
+                            <p class="text-sm text-gray-500">CEO, EcomStore US | New York</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="card-hover bg-gray-50 p-8 rounded-xl">
+                    <div class="text-primary text-3xl mb-4"><i class="fas fa-quote-left"></i></div>
+                    <p class="text-gray-600 mb-6">
+                        "The n8n automation setup was seamless and exactly what we needed. The expert took the time to understand our unique processes and delivered a solution that exceeded our expectations."
+                    </p>
+                    <div class="flex items-center">
+                        <img src="https://ui-avatars.com/api/?name=Sarah+Miller&background=random" alt="Sarah Miller" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold">Sarah Miller</h4>
+                            <p class="text-sm text-gray-500">Operations Director | London, UK</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="card-hover bg-gray-50 p-8 rounded-xl">
+                    <div class="text-primary text-3xl mb-4"><i class="fas fa-quote-left"></i></div>
+                    <p class="text-gray-600 mb-6">
+                        "We tried building n8n workflows ourselves but struggled with complex integrations. This expert fixed our existing workflows and built new ones that improved our efficiency by 75%."
+                    </p>
+                    <div class="flex items-center">
+                        <img src="https://ui-avatars.com/api/?name=Michael+Chen&background=random" alt="Michael Chen" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold">Michael Chen</h4>
+                            <p class="text-sm text-gray-500">CTO, SaaSPro | Sydney, Australia</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-primary/5">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Get In Touch</h2>
+            
+            <div class="bg-white rounded-xl shadow-lg p-8 md:p-12">
+                <form class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-gray-700 mb-2" for="name">Full Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2" for="email">Email Address</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 mb-2" for="project">Project Description</label>
+                        <textarea id="project" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="bg-primary text-white px-8 py-3 rounded-lg hover:bg-primary/90 transition-colors">
+                            Send Inquiry
+                        </button>
+                        <p class="mt-4 text-gray-600">
+                            Or message me directly on <a href="https://wa.me/yourphonenumber" target="_blank" class="text-primary font-semibold">WhatsApp</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-secondary text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <span class="text-2xl font-bold">n8n<span class="text-primary">Automate</span></span>
+                <p class="mt-4 text-gray-400">Building efficient automations for businesses worldwide</p>
+                <div class="mt-6 flex justify-center space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-github"></i></a>
+                    <a href="https://wa.me/yourphonenumber" target="_blank" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-whatsapp"></i></a>
+                </div>
+                <p class="mt-8 text-sm text-gray-500">© 2025 Your Name. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>
