@@ -1,299 +1,974 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name | n8n Automation Expert</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#8A2BE2', // n8n brand purple
-                        secondary: '#1E293B',
-                        accent: '#6366F1'
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                    },
-                }
-            }
-        }
-    </script>
-    <style type="text/tailwindcss">
-        @layer utilities {
-            .text-shadow {
-                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            }
-            .card-hover {
-                transition: all 0.3s ease;
-            }
-            .card-hover:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-            }
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>n8n Automation Portfolio | Your Name</title>
+  <meta name="description" content="Portfolio of n8n automations: lead capture, AI enrichment, reporting, integrations, and workflow optimization. Hire me for n8n workflow design & implementation." />
+
+  <style>
+    :root{
+      --bg: #0b1220;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.08);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.72);
+      --muted2: rgba(255,255,255,.60);
+      --border: rgba(255,255,255,.12);
+      --accent: #6ee7ff;
+      --accent2:#a78bfa;
+      --good:#22c55e;
+      --shadow: 0 20px 50px rgba(0,0,0,.45);
+      --radius: 18px;
+      --radius2: 14px;
+      --max: 1120px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 800px at 20% 5%, rgba(110,231,255,.18), transparent 60%),
+        radial-gradient(1000px 700px at 80% 20%, rgba(167,139,250,.14), transparent 55%),
+        radial-gradient(900px 600px at 50% 90%, rgba(34,197,94,.10), transparent 60%),
+        linear-gradient(180deg, #070b14, var(--bg));
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+    .container{width: min(var(--max), calc(100% - 40px)); margin: 0 auto;}
+    .nav{
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(11,18,32,.65);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 14px 0;
+      gap: 18px;
+    }
+    .brand{display:flex; align-items:center; gap: 12px; text-decoration:none;}
+    .logo{
+      width: 38px; height: 38px; border-radius: 12px;
+      background: linear-gradient(135deg, rgba(110,231,255,.85), rgba(167,139,250,.85));
+      box-shadow: 0 10px 30px rgba(110,231,255,.12);
+      border: 1px solid rgba(255,255,255,.14);
+      display:grid; place-items:center;
+      font-weight: 800;
+      letter-spacing: .5px;
+    }
+    .brand b{font-size: 14px; letter-spacing:.2px}
+    .brand span{display:block; font-size: 12px; color: var(--muted2); margin-top:2px}
+
+    .nav-links{display:flex; gap: 14px; flex-wrap:wrap; justify-content:flex-end}
+    .nav-links a{
+      text-decoration:none;
+      color: var(--muted);
+      font-size: 13px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: .2s ease;
+    }
+    .nav-links a:hover{
+      color: var(--text);
+      border-color: var(--border);
+      background: rgba(255,255,255,.05);
+    }
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding: 12px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      text-decoration:none;
+      font-size: 14px;
+      line-height: 1;
+      transition:.2s ease;
+      box-shadow: 0 12px 30px rgba(0,0,0,.25);
+      cursor:pointer;
+    }
+    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.08)}
+    .btn.primary{
+      border-color: rgba(110,231,255,.35);
+      background: linear-gradient(135deg, rgba(110,231,255,.16), rgba(167,139,250,.14));
+    }
+    .btn .dot{
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--good);
+      box-shadow: 0 0 0 6px rgba(34,197,94,.12);
+    }
+
+    header.hero{padding: 54px 0 28px}
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 26px;
+      align-items:stretch;
+    }
+    @media (max-width: 960px){
+      .hero-grid{grid-template-columns: 1fr; }
+    }
+    .card{
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .hero-left{padding: 28px}
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      font-size: 12px; color: var(--muted);
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+    }
+    .kicker code{font-family: var(--mono); color: rgba(110,231,255,.95); font-size: 12px}
+    h1{
+      margin: 14px 0 10px;
+      font-size: clamp(28px, 4vw, 46px);
+      letter-spacing: -0.6px;
+      line-height: 1.07;
+    }
+    .sub{
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.6;
+      max-width: 62ch;
+      margin: 0 0 18px;
+    }
+    .hero-actions{display:flex; gap: 12px; flex-wrap:wrap; margin-top: 14px}
+    .meta{
+      margin-top: 18px;
+      display:flex; gap: 10px; flex-wrap:wrap;
+      color: var(--muted2);
+      font-size: 13px;
+    }
+    .pill{
+      display:inline-flex; align-items:center; gap: 10px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      padding: 10px 12px;
+      border-radius: 999px;
+    }
+    .pill svg{opacity:.9}
+    .hero-right{padding: 18px}
+    .workflow-mock{
+      height: 100%;
+      min-height: 320px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background:
+        radial-gradient(600px 240px at 50% -10%, rgba(110,231,255,.22), transparent 55%),
+        radial-gradient(600px 240px at 70% 20%, rgba(167,139,250,.18), transparent 55%),
+        rgba(255,255,255,.03);
+      position:relative;
+      overflow:hidden;
+    }
+    .wf-top{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 12px 12px 8px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .wf-top b{color: var(--text); font-weight: 650}
+    .wf-canvas{padding: 16px; display:grid; gap: 10px}
+    .node{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+    }
+    .node .left{display:flex; gap:10px; align-items:center}
+    .icon{
+      width: 30px; height: 30px; border-radius: 10px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      display:grid; place-items:center;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: rgba(110,231,255,.9);
+    }
+    .node b{font-size: 13px}
+    .node span{display:block; font-size: 12px; color: var(--muted2); margin-top:2px}
+    .tag{
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      color: var(--muted);
+      background: rgba(255,255,255,.04);
+      white-space:nowrap;
+    }
+
+    section{padding: 28px 0}
+    .section-head{
+      display:flex; align-items:flex-end; justify-content:space-between; gap: 18px;
+      margin-bottom: 14px;
+    }
+    .section-head h2{
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: -0.2px;
+    }
+    .section-head p{margin:0; color: var(--muted); max-width: 72ch; line-height:1.6}
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+    .col-4{grid-column: span 4}
+    .col-6{grid-column: span 6}
+    .col-12{grid-column: span 12}
+    @media (max-width: 980px){
+      .col-4,.col-6{grid-column: span 12}
+    }
+
+    .case-card{
+      padding: 16px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      box-shadow: 0 16px 40px rgba(0,0,0,.25);
+      position:relative;
+      overflow:hidden;
+    }
+    .case-card:hover{background: rgba(255,255,255,.07)}
+    .case-top{display:flex; align-items:flex-start; justify-content:space-between; gap: 12px}
+    .case-card h3{margin: 0 0 6px; font-size: 16px}
+    .case-card p{margin: 0; color: var(--muted); font-size: 14px; line-height: 1.55}
+    .case-metrics{display:flex; gap: 8px; flex-wrap:wrap; margin-top: 12px}
+    .metric{
+      font-size: 12px; color: var(--muted);
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      padding: 8px 10px;
+      border-radius: 999px;
+    }
+    .case-actions{margin-top: 14px; display:flex; gap:10px; flex-wrap:wrap}
+    .btn.small{padding: 10px 12px; font-size: 13px; box-shadow:none}
+
+    .testi{
+      padding: 16px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.05);
+    }
+    .testi p{margin: 0 0 10px; color: var(--text); line-height:1.6}
+    .who{display:flex; align-items:center; justify-content:space-between; gap: 12px}
+    .who b{font-size: 13px}
+    .who span{font-size: 12px; color: var(--muted2)}
+    .stars{font-size: 12px; color: rgba(110,231,255,.95); letter-spacing: 1px}
+
+    .footer{
+      padding: 26px 0 60px;
+      color: var(--muted2);
+      border-top: 1px solid rgba(255,255,255,.10);
+      margin-top: 24px;
+    }
+    .footer-inner{
+      display:flex; align-items:flex-start; justify-content:space-between; gap: 20px; flex-wrap:wrap;
+    }
+    .footer a{color: var(--muted); text-decoration:none}
+    .footer a:hover{color: var(--text)}
+
+    /* Modal */
+    .modal-backdrop{
+      position:fixed; inset:0; z-index: 100;
+      background: rgba(0,0,0,.55);
+      backdrop-filter: blur(10px);
+      display:none;
+      padding: 24px;
+    }
+    .modal{
+      width: min(860px, 100%);
+      margin: 0 auto;
+      border-radius: 18px;
+      background: rgba(12,18,34,.92);
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: 0 25px 80px rgba(0,0,0,.6);
+      overflow:hidden;
+    }
+    .modal-head{
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      display:flex; justify-content:space-between; align-items:center; gap: 10px;
+    }
+    .modal-head b{font-size: 14px}
+    .modal-body{padding: 16px}
+    .modal-body h4{margin: 0 0 8px}
+    .modal-body ul{margin: 10px 0 0 18px; color: var(--muted); line-height: 1.65}
+    .close{
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      border-radius: 12px;
+      padding: 8px 10px;
+      cursor:pointer;
+    }
+
+    /* WhatsApp floating button */
+    .wa{
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 200;
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      text-decoration:none;
+      padding: 12px 14px;
+      border-radius: 999px;
+      background: rgba(34,197,94,.16);
+      border: 1px solid rgba(34,197,94,.35);
+      color: var(--text);
+      box-shadow: 0 18px 45px rgba(0,0,0,.45);
+      backdrop-filter: blur(10px);
+    }
+    .wa .wa-ico{
+      width: 34px; height: 34px; border-radius: 12px;
+      display:grid; place-items:center;
+      background: rgba(34,197,94,.20);
+      border: 1px solid rgba(34,197,94,.35);
+    }
+    .wa small{display:block; color: rgba(255,255,255,.72); margin-top:2px}
+  </style>
 </head>
-<body class="bg-gray-50 font-sans text-secondary">
 
-    <!-- Sticky WhatsApp Contact Button -->
-    <a href="https://wa.me/yourphonenumber" target="_blank" class="fixed right-6 bottom-6 bg-green-500 text-white rounded-full p-4 shadow-lg hover:bg-green-600 transition-all z-50">
-        <i class="fab fa-whatsapp text-2xl"></i>
-    </a>
-
-    <!-- Navigation Bar -->
-    <nav class="bg-white shadow-sm sticky top-0 z-40">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <span class="text-primary text-2xl font-bold">n8n<span class="text-secondary">Automate</span></span>
-                </div>
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#about" class="text-gray-700 hover:text-primary transition-colors">About</a>
-                    <a href="#case-studies" class="text-gray-700 hover:text-primary transition-colors">Case Studies</a>
-                    <a href="#testimonials" class="text-gray-700 hover:text-primary transition-colors">Testimonials</a>
-                    <a href="#contact" class="bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors">Hire Me</a>
-                </div>
-                <div class="md:hidden flex items-center">
-                    <button class="text-gray-700">
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
-                </div>
-            </div>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top">
+        <div class="logo">n8</div>
+        <div>
+          <b>Your Name — n8n Automations</b>
+          <span>Design • Build • Maintain • Scale</span>
         </div>
-    </nav>
+      </a>
 
-    <!-- Hero Section -->
-    <section class="bg-gradient-to-br from-primary/5 to-white py-16 md:py-24">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row items-center gap-12">
-                <div class="md:w-1/2">
-                    <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold text-secondary leading-tight text-shadow">
-                        Build Scalable <span class="text-primary">n8n Automations</span> For Your Business
-                    </h1>
-                    <p class="mt-6 text-lg text-gray-600">
-                        I design and implement custom n8n workflows to eliminate manual tasks, reduce errors, and save your team hundreds of hours every month.
-                    </p>
-                    <div class="mt-8 flex flex-wrap gap-4">
-                        <a href="#case-studies" class="bg-primary text-white px-8 py-3 rounded-lg hover:bg-primary/90 transition-colors">
-                            View My Work
-                        </a>
-                        <a href="https://wa.me/yourphonenumber" target="_blank" class="border border-primary text-primary px-8 py-3 rounded-lg hover:bg-primary/5 transition-colors">
-                            <i class="fab fa-whatsapp mr-2"></i> Contact Now
-                        </a>
-                    </div>
-                </div>
-                <div class="md:w-1/2">
-                    <div class="bg-white rounded-xl shadow-xl p-4">
-                        <img src="https://via.placeholder.com/600x400/8A2BE2/ffffff?text=n8n+Workflow+Preview" alt="n8n Workflow Preview" class="rounded-lg">
-                    </div>
-                </div>
+      <div class="nav-links">
+        <a href="#work">Case Studies</a>
+        <a href="#services">Services</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact</a>
+        <a class="btn primary" href="#contact"><span class="dot"></span>Available for Projects</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top" class="container">
+    <header class="hero">
+      <div class="hero-grid">
+        <section class="card hero-left">
+          <div class="kicker">
+            <span>Specialist in</span>
+            <code>n8n</code>
+            <span>automation & integrations</span>
+          </div>
+
+          <h1>Automations that remove busywork, reduce errors, and ship faster.</h1>
+          <p class="sub">
+            I build reliable n8n workflows for lead handling, AI enrichment, reporting, support ops,
+            and multi-app integrations—production-ready with logs, retries, alerts, and documentation.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn primary" href="#work">View Case Studies</a>
+            <a class="btn" href="#contact">Book a Call</a>
+          </div>
+
+          <div class="meta">
+            <div class="pill" title="Typical delivery">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M12 8v5l3 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="currentColor" stroke-width="2"/>
+              </svg>
+              <span>Fast iteration: 3–10 days per workflow</span>
             </div>
+            <div class="pill" title="Stack">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2 3 7l9 5 9-5-9-5Z" stroke="currentColor" stroke-width="2"/>
+                <path d="M3 12l9 5 9-5" stroke="currentColor" stroke-width="2"/>
+                <path d="M3 17l9 5 9-5" stroke="currentColor" stroke-width="2"/>
+              </svg>
+              <span>n8n + APIs + Webhooks + DB + AI</span>
+            </div>
+          </div>
+        </section>
+
+        <aside class="card hero-right">
+          <div class="workflow-mock" aria-label="Mock n8n workflow preview">
+            <div class="wf-top">
+              <span><b>Workflow:</b> Lead Intake → Enrichment → CRM</span>
+              <span>mock preview</span>
+            </div>
+            <div class="wf-canvas">
+              <div class="node">
+                <div class="left">
+                  <div class="icon">WH</div>
+                  <div>
+                    <b>Webhook Trigger</b>
+                    <span>New form submission</span>
+                  </div>
+                </div>
+                <div class="tag">Instant</div>
+              </div>
+
+              <div class="node">
+                <div class="left">
+                  <div class="icon">AI</div>
+                  <div>
+                    <b>AI Enrichment</b>
+                    <span>Company + intent signals</span>
+                  </div>
+                </div>
+                <div class="tag">GPT / API</div>
+              </div>
+
+              <div class="node">
+                <div class="left">
+                  <div class="icon">DB</div>
+                  <div>
+                    <b>Deduplicate</b>
+                    <span>Prevent double entries</span>
+                  </div>
+                </div>
+                <div class="tag">Safe</div>
+              </div>
+
+              <div class="node">
+                <div class="left">
+                  <div class="icon">CRM</div>
+                  <div>
+                    <b>Push to CRM</b>
+                    <span>Pipeline + tasks + notes</span>
+                  </div>
+                </div>
+                <div class="tag">Logged</div>
+              </div>
+
+              <div class="node">
+                <div class="left">
+                  <div class="icon">AL</div>
+                  <div>
+                    <b>Alerts</b>
+                    <span>Slack/email on failure</span>
+                  </div>
+                </div>
+                <div class="tag">Retries</div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </header>
+
+    <!-- Case Studies -->
+    <section id="work">
+      <div class="section-head">
+        <div>
+          <h2>Mock Case Studies (n8n Workflows)</h2>
+          <p>
+            Example automations showcasing workflow design, error handling, and measurable outcomes.
+            Replace with your real workflows, screenshots, and metrics anytime.
+          </p>
         </div>
+      </div>
+
+      <div class="grid">
+        <article class="case-card col-4">
+          <div class="case-top">
+            <div>
+              <h3>01 — Lead Intake & CRM Sync</h3>
+              <p>Webform → validation → enrichment → CRM → follow-up tasks + alerts.</p>
+            </div>
+            <span class="tag">Sales Ops</span>
+          </div>
+          <div class="case-metrics">
+            <span class="metric">↓ 80% manual entry</span>
+            <span class="metric">Deduplication</span>
+            <span class="metric">Audit logs</span>
+          </div>
+          <div class="case-actions">
+            <button class="btn small" data-modal="case1">View details</button>
+            <a class="btn small" href="#contact">Build this for me</a>
+          </div>
+        </article>
+
+        <article class="case-card col-4">
+          <div class="case-top">
+            <div>
+              <h3>02 — Support Triage + Auto-Reply</h3>
+              <p>Email/Helpdesk → classify → route → SLA timers → summaries for agents.</p>
+            </div>
+            <span class="tag">Support</span>
+          </div>
+          <div class="case-metrics">
+            <span class="metric">Faster first response</span>
+            <span class="metric">Auto-tagging</span>
+            <span class="metric">Escalations</span>
+          </div>
+          <div class="case-actions">
+            <button class="btn small" data-modal="case2">View details</button>
+            <a class="btn small" href="#contact">Build this for me</a>
+          </div>
+        </article>
+
+        <article class="case-card col-4">
+          <div class="case-top">
+            <div>
+              <h3>03 — Daily KPI Reporting</h3>
+              <p>Pull data from tools → normalize → dashboards + email summary to stakeholders.</p>
+            </div>
+            <span class="tag">Analytics</span>
+          </div>
+          <div class="case-metrics">
+            <span class="metric">Scheduled</span>
+            <span class="metric">Single source</span>
+            <span class="metric">CSV/Sheets</span>
+          </div>
+          <div class="case-actions">
+            <button class="btn small" data-modal="case3">View details</button>
+            <a class="btn small" href="#contact">Build this for me</a>
+          </div>
+        </article>
+
+        <article class="case-card col-6">
+          <div class="case-top">
+            <div>
+              <h3>04 — Invoice → Accounting → Notifications</h3>
+              <p>Invoice created → line-item checks → accounting sync → WhatsApp/email notifications.</p>
+            </div>
+            <span class="tag">Finance</span>
+          </div>
+          <div class="case-metrics">
+            <span class="metric">Validation rules</span>
+            <span class="metric">Error queue</span>
+            <span class="metric">Approvals</span>
+          </div>
+          <div class="case-actions">
+            <button class="btn small" data-modal="case4">View details</button>
+            <a class="btn small" href="#contact">Build this for me</a>
+          </div>
+        </article>
+
+        <article class="case-card col-6">
+          <div class="case-top">
+            <div>
+              <h3>05 — Content Pipeline (AI + Human Review)</h3>
+              <p>Ideas → AI draft → plagiarism checks → editor review → schedule/publish.</p>
+            </div>
+            <span class="tag">Marketing</span>
+          </div>
+          <div class="case-metrics">
+            <span class="metric">Approval gates</span>
+            <span class="metric">Versioning</span>
+            <span class="metric">Publishing</span>
+          </div>
+          <div class="case-actions">
+            <button class="btn small" data-modal="case5">View details</button>
+            <a class="btn small" href="#contact">Build this for me</a>
+          </div>
+        </article>
+      </div>
     </section>
 
-    <!-- Expertise Section -->
-    <section id="about" class="py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">My n8n Expertise</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="card-hover bg-gray-50 p-6 rounded-xl">
-                    <div class="text-primary text-3xl mb-4"><i class="fas fa-sitemap"></i></div>
-                    <h3 class="text-xl font-semibold mb-2">Workflow Design</h3>
-                    <p class="text-gray-600">Custom end-to-end n8n workflow development tailored to your business processes</p>
-                </div>
-                <div class="card-hover bg-gray-50 p-6 rounded-xl">
-                    <div class="text-primary text-3xl mb-4"><i class="fas fa-plug"></i></div>
-                    <h3 class="text-xl font-semibold mb-2">Integration</h3>
-                    <p class="text-gray-600">Connect 1000+ apps including CRM, ERP, e-commerce platforms and custom APIs</p>
-                </div>
-                <div class="card-hover bg-gray-50 p-6 rounded-xl">
-                    <div class="text-primary text-3xl mb-4"><i class="fas fa-shield-alt"></i></div>
-                    <h3 class="text-xl font-semibold mb-2">Maintenance</h3>
-                    <p class="text-gray-600">Ongoing workflow monitoring, debugging and optimization services</p>
-                </div>
-                <div class="card-hover bg-gray-50 p-6 rounded-xl">
-                    <div class="text-primary text-3xl mb-4"><i class="fas fa-chart-line"></i></div>
-                    <h3 class="text-xl font-semibold mb-2">Optimization</h3>
-                    <p class="text-gray-600">Audit and improve existing workflows for better performance and reliability</p>
-                </div>
-            </div>
+    <!-- Services -->
+    <section id="services">
+      <div class="section-head">
+        <div>
+          <h2>Services</h2>
+          <p>From a single automation to a full automation stack—documented, monitored, and maintainable.</p>
         </div>
+      </div>
+
+      <div class="grid">
+        <div class="card col-4" style="padding:16px">
+          <h3 style="margin:0 0 6px; font-size:16px">Workflow Design & Build</h3>
+          <p style="margin:0; color:var(--muted); line-height:1.6; font-size:14px">
+            n8n workflow architecture, modular nodes, clean mappings, edge-case handling, and QA.
+          </p>
+          <div class="case-metrics">
+            <span class="metric">Webhooks</span>
+            <span class="metric">APIs</span>
+            <span class="metric">Retries</span>
+          </div>
+        </div>
+
+        <div class="card col-4" style="padding:16px">
+          <h3 style="margin:0 0 6px; font-size:16px">Integrations & Data Sync</h3>
+          <p style="margin:0; color:var(--muted); line-height:1.6; font-size:14px">
+            Connect CRMs, sheets, email tools, Slack, databases, and custom services with robust syncing.
+          </p>
+          <div class="case-metrics">
+            <span class="metric">OAuth/API keys</span>
+            <span class="metric">Dedup</span>
+            <span class="metric">Rate limits</span>
+          </div>
+        </div>
+
+        <div class="card col-4" style="padding:16px">
+          <h3 style="margin:0 0 6px; font-size:16px">Monitoring & Maintenance</h3>
+          <p style="margin:0; color:var(--muted); line-height:1.6; font-size:14px">
+            Alerts, runbooks, logs, backups, environment variables, and safe deployment practices.
+          </p>
+          <div class="case-metrics">
+            <span class="metric">SLA</span>
+            <span class="metric">On-call alerts</span>
+            <span class="metric">Documentation</span>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Case Studies Section -->
-    <section id="case-studies" class="py-16 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">n8n Workflow Case Studies</h2>
-            
-            <div class="space-y-12">
-                <!-- Case Study 1 -->
-                <div class="card-hover bg-white rounded-xl shadow-lg overflow-hidden">
-                    <div class="flex flex-col md:flex-row">
-                        <div class="md:w-1/2 p-8">
-                            <span class="text-xs font-semibold text-primary uppercase tracking-wider">E-commerce</span>
-                            <h3 class="text-2xl font-bold mt-2 mb-4">Order Fulfillment Automation</h3>
-                            <p class="text-gray-600 mb-4">
-                                <strong>Problem:</strong> A US-based Shopify store was manually processing 200+ orders daily, leading to delays and human errors.
-                            </p>
-                            <p class="text-gray-600 mb-4">
-                                <strong>Solution:</strong> Built an n8n workflow that automatically:
-                                <ul class="list-disc list-inside mt-2 space-y-1">
-                                    <li>Validates customer orders</li>
-                                    <li>Sends details to fulfillment partner API</li>
-                                    <li>Generates shipping labels</li>
-                                    <li>Sends automated tracking updates to customers</li>
-                                </ul>
-                            </p>
-                            <p class="text-gray-800 font-semibold mt-4">
-                                Results: Reduced order processing time by 92% | Eliminated manual errors | Saved 15+ hours/week
-                            </p>
-                        </div>
-                        <div class="md:w-1/2">
-                            <img src="https://via.placeholder.com/600x400/8A2BE2/ffffff?text=E-commerce+Order+Workflow" alt="E-commerce Order Workflow" class="h-full w-full object-cover">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Case Study 2 -->
-                <div class="card-hover bg-white rounded-xl shadow-lg overflow-hidden">
-                    <div class="flex flex-col md:flex-row-reverse">
-                        <div class="md:w-1/2 p-8">
-                            <span class="text-xs font-semibold text-primary uppercase tracking-wider">Lead Generation</span>
-                            <h3 class="text-2xl font-bold mt-2 mb-4">Lead Nurturing Workflow</h3>
-                            <p class="text-gray-600 mb-4">
-                                <strong>Problem:</strong> A UK SaaS company was losing 40% of leads due to slow follow-up responses.
-                            </p>
-                            <p class="text-gray-600 mb-4">
-                                <strong>Solution:</strong> Implemented an n8n workflow that:
-                                <ul class="list-disc list-inside mt-2 space-y-1">
-                                    <li>Captures leads from landing pages</li>
-                                    <li>Qualifies leads based on predefined criteria</li>
-                                    <li>Sends personalized follow-up sequences</li>
-                                    <li>Routes hot leads to sales team in real-time</li>
-                                </ul>
-                            </p>
-                            <p class="text-gray-800 font-semibold mt-4">
-                                Results: 35% increase in lead conversion | 100% follow-up within 5 minutes | Reduced sales team admin work by 60%
-                            </p>
-                        </div>
-                        <div class="md:w-1/2">
-                            <img src="https://via.placeholder.com/600x400/8A2BE2/ffffff?text=Lead+Nurturing+Workflow" alt="Lead Nurturing Workflow" class="h-full w-full object-cover">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Add more case studies similarly -->
-            </div>
+    <!-- Reviews -->
+    <section id="reviews">
+      <div class="section-head">
+        <div>
+          <h2>Client Reviews</h2>
+          <p>Mocked international testimonials (replace with your real client quotes + permissions).</p>
         </div>
+      </div>
+
+      <div class="grid">
+        <div class="testi col-4">
+          <div class="stars">★★★★★</div>
+          <p>
+            “We hired him to rebuild our n8n automations. The new workflows are stable, well-documented,
+            and errors finally have clear alerts. Our team saved hours every week.”
+          </p>
+          <div class="who">
+            <div>
+              <b>Olivia R.</b><br/>
+              <span>Operations Lead — United Kingdom</span>
+            </div>
+            <span class="tag">B2B SaaS</span>
+          </div>
+        </div>
+
+        <div class="testi col-4">
+          <div class="stars">★★★★★</div>
+          <p>
+            “Excellent communicator. He mapped our process, handled edge cases, and delivered quickly.
+            The CRM sync works flawlessly now.”
+          </p>
+          <div class="who">
+            <div>
+              <b>Daniel K.</b><br/>
+              <span>Founder — Germany</span>
+            </div>
+            <span class="tag">Agency</span>
+          </div>
+        </div>
+
+        <div class="testi col-4">
+          <div class="stars">★★★★★</div>
+          <p>
+            “Our daily reporting used to be manual. He automated it end-to-end with n8n and added
+            a clear audit trail. Highly recommend.”
+          </p>
+          <div class="who">
+            <div>
+              <b>Sophia M.</b><br/>
+              <span>Finance Manager — Canada</span>
+            </div>
+            <span class="tag">E-commerce</span>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">What My Clients Say</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Testimonial 1 -->
-                <div class="card-hover bg-gray-50 p-8 rounded-xl">
-                    <div class="text-primary text-3xl mb-4"><i class="fas fa-quote-left"></i></div>
-                    <p class="text-gray-600 mb-6">
-                        "Working with this n8n expert transformed our business operations. The workflows he built saved our team over 20 hours every week and eliminated costly errors. Highly recommended!"
-                    </p>
-                    <div class="flex items-center">
-                        <img src="https://ui-avatars.com/api/?name=John+Doe&background=random" alt="John Doe" class="w-12 h-12 rounded-full mr-4">
-                        <div>
-                            <h4 class="font-semibold">John Doe</h4>
-                            <p class="text-sm text-gray-500">CEO, EcomStore US | New York</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Testimonial 2 -->
-                <div class="card-hover bg-gray-50 p-8 rounded-xl">
-                    <div class="text-primary text-3xl mb-4"><i class="fas fa-quote-left"></i></div>
-                    <p class="text-gray-600 mb-6">
-                        "The n8n automation setup was seamless and exactly what we needed. The expert took the time to understand our unique processes and delivered a solution that exceeded our expectations."
-                    </p>
-                    <div class="flex items-center">
-                        <img src="https://ui-avatars.com/api/?name=Sarah+Miller&background=random" alt="Sarah Miller" class="w-12 h-12 rounded-full mr-4">
-                        <div>
-                            <h4 class="font-semibold">Sarah Miller</h4>
-                            <p class="text-sm text-gray-500">Operations Director | London, UK</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Testimonial 3 -->
-                <div class="card-hover bg-gray-50 p-8 rounded-xl">
-                    <div class="text-primary text-3xl mb-4"><i class="fas fa-quote-left"></i></div>
-                    <p class="text-gray-600 mb-6">
-                        "We tried building n8n workflows ourselves but struggled with complex integrations. This expert fixed our existing workflows and built new ones that improved our efficiency by 75%."
-                    </p>
-                    <div class="flex items-center">
-                        <img src="https://ui-avatars.com/api/?name=Michael+Chen&background=random" alt="Michael Chen" class="w-12 h-12 rounded-full mr-4">
-                        <div>
-                            <h4 class="font-semibold">Michael Chen</h4>
-                            <p class="text-sm text-gray-500">CTO, SaaSPro | Sydney, Australia</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- Contact -->
+    <section id="contact">
+      <div class="section-head">
+        <div>
+          <h2>Contact</h2>
+          <p>
+            Tell me what tools you use (CRM, email, forms, database) and what outcome you want.
+            I’ll propose a workflow plan with timeline and cost.
+          </p>
         </div>
+      </div>
+
+      <div class="grid">
+        <div class="card col-6" style="padding:16px">
+          <h3 style="margin:0 0 10px; font-size:16px">Quick project brief</h3>
+          <form id="briefForm">
+            <label style="display:block; font-size:13px; color:var(--muted); margin-bottom:6px">Your name</label>
+            <input name="name" required
+              style="width:100%; padding:12px 12px; border-radius:12px; border:1px solid var(--border); background:rgba(0,0,0,.18); color:var(--text); margin-bottom:12px"/>
+
+            <label style="display:block; font-size:13px; color:var(--muted); margin-bottom:6px">Email or company</label>
+            <input name="email"
+              style="width:100%; padding:12px 12px; border-radius:12px; border:1px solid var(--border); background:rgba(0,0,0,.18); color:var(--text); margin-bottom:12px"/>
+
+            <label style="display:block; font-size:13px; color:var(--muted); margin-bottom:6px">What do you want to automate?</label>
+            <textarea name="message" required rows="5"
+              style="width:100%; padding:12px 12px; border-radius:12px; border:1px solid var(--border); background:rgba(0,0,0,.18); color:var(--text); margin-bottom:12px"></textarea>
+
+            <button class="btn primary" type="submit">Generate WhatsApp message</button>
+            <p style="margin:10px 0 0; color:var(--muted2); font-size:12px; line-height:1.5">
+              This form doesn’t submit to a server. It opens WhatsApp with your message pre-filled.
+            </p>
+          </form>
+        </div>
+
+        <div class="card col-6" style="padding:16px">
+          <h3 style="margin:0 0 10px; font-size:16px">What you get</h3>
+          <ul style="margin:0 0 0 18px; color:var(--muted); line-height:1.75">
+            <li>Workflow blueprint + scope</li>
+            <li>Production-ready n8n implementation</li>
+            <li>Error handling (timeouts, retries, rate limits)</li>
+            <li>Monitoring & alerts (Slack/email)</li>
+            <li>Documentation + handover</li>
+          </ul>
+
+          <div style="margin-top:14px; padding:14px; border-radius:14px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.04)">
+            <div style="font-size:13px; color:var(--muted)">Preferred contact</div>
+            <div style="margin-top:6px; display:flex; gap:10px; flex-wrap:wrap">
+              <a class="btn" id="emailLink" href="mailto:you@example.com">Email me</a>
+              <a class="btn primary" id="waLinkTop" href="#" target="_blank" rel="noopener">WhatsApp me</a>
+            </div>
+            <div style="margin-top:10px; color:var(--muted2); font-size:12px">
+              Replace the WhatsApp number in the script below.
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-primary/5">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Get In Touch</h2>
-            
-            <div class="bg-white rounded-xl shadow-lg p-8 md:p-12">
-                <form class="space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-gray-700 mb-2" for="name">Full Name</label>
-                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
-                        </div>
-                        <div>
-                            <label class="block text-gray-700 mb-2" for="email">Email Address</label>
-                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block text-gray-700 mb-2" for="project">Project Description</label>
-                        <textarea id="project" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"></textarea>
-                    </div>
-                    <div class="text-center">
-                        <button type="submit" class="bg-primary text-white px-8 py-3 rounded-lg hover:bg-primary/90 transition-colors">
-                            Send Inquiry
-                        </button>
-                        <p class="mt-4 text-gray-600">
-                            Or message me directly on <a href="https://wa.me/yourphonenumber" target="_blank" class="text-primary font-semibold">WhatsApp</a>
-                        </p>
-                    </div>
-                </form>
-            </div>
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div>
+          <b style="color:var(--text)">Your Name</b><br/>
+          <span>n8n Automations • Integrations • AI Workflows</span>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-secondary text-white py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
-                <span class="text-2xl font-bold">n8n<span class="text-primary">Automate</span></span>
-                <p class="mt-4 text-gray-400">Building efficient automations for businesses worldwide</p>
-                <div class="mt-6 flex justify-center space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-github"></i></a>
-                    <a href="https://wa.me/yourphonenumber" target="_blank" class="text-gray-400 hover:text-white transition-colors"><i class="fab fa-whatsapp"></i></a>
-                </div>
-                <p class="mt-8 text-sm text-gray-500">© 2025 Your Name. All rights reserved.</p>
-            </div>
+        <div style="display:flex; gap:14px; flex-wrap:wrap">
+          <a href="#work">Case Studies</a>
+          <a href="#services">Services</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#contact">Contact</a>
         </div>
+      </div>
     </footer>
+  </main>
 
+  <!-- Floating WhatsApp button -->
+  <a class="wa" id="waFloating" href="#" target="_blank" rel="noopener" aria-label="Contact on WhatsApp">
+    <span class="wa-ico" aria-hidden="true">
+      <!-- simple whatsapp-like icon -->
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+        <path d="M20 11.8a8 8 0 0 1-11.6 7L4 20l1.3-4.1A8 8 0 1 1 20 11.8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M9.5 9.5c.2 3 2 4.8 5 5 .7 0 1.5-.5 2-.9.2-.1.2-.4.1-.6l-.7-1.2c-.1-.2-.4-.3-.6-.2l-1.1.4c-.2.1-.4 0-.5-.2l-.9-1.1c-.1-.1-.1-.3 0-.5l.5-1.1c.1-.2 0-.5-.2-.6l-1.2-.7c-.2-.1-.5-.1-.6.1-.4.6-.9 1.3-.9 2Z" fill="currentColor" opacity=".9"/>
+      </svg>
+    </span>
+    <div>
+      <div style="font-weight:650">WhatsApp</div>
+      <small>Get a quote</small>
+    </div>
+  </a>
+
+  <!-- Modal -->
+  <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal">
+      <div class="modal-head">
+        <b id="modalTitle">Case study</b>
+        <button class="close" id="modalClose">Close</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script>
+    // ========= Configure your WhatsApp number here =========
+    // Use international format without +, spaces or dashes. Example: 447700900123
+    const WHATSAPP_NUMBER = "1234567890";
+
+    // Default WhatsApp message
+    const WA_DEFAULT_TEXT =
+      "Hi! I’m interested in an n8n automation. Can you share pricing and timeline?";
+
+    function waLink(text){
+      const encoded = encodeURIComponent(text || WA_DEFAULT_TEXT);
+      return `https://wa.me/${WHATSAPP_NUMBER}?text=${encoded}`;
+    }
+
+    // Set WhatsApp links
+    const waFloating = document.getElementById("waFloating");
+    const waLinkTop = document.getElementById("waLinkTop");
+    waFloating.href = waLink(WA_DEFAULT_TEXT);
+    waLinkTop.href = waLink("Hi! I’d like to discuss an n8n automation project.");
+
+    // Form -> WhatsApp
+    document.getElementById("briefForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const data = new FormData(e.target);
+      const name = (data.get("name") || "").toString().trim();
+      const email = (data.get("email") || "").toString().trim();
+      const msg = (data.get("message") || "").toString().trim();
+
+      const text =
+`Hi! My name is ${name}.
+Contact: ${email || "N/A"}
+
+I want to automate:
+${msg}
+
+Tools involved:
+- (e.g., CRM, Email, Sheets, Slack, DB)
+Budget / timeline:
+- (optional)`;
+
+      window.open(waLink(text), "_blank", "noopener");
+    });
+
+    // ========= Case study modal content (mock) =========
+    const CASES = {
+      case1: {
+        title: "01 — Lead Intake & CRM Sync",
+        body: `
+          <h4>Use case</h4>
+          <p style="color: rgba(255,255,255,.78); line-height:1.65; margin:0;">
+            Capture leads from forms/webhooks, enrich and validate data, then create/update records in the CRM.
+            Automatically assign owner, create tasks, and notify the team.
+          </p>
+
+          <h4 style="margin-top:14px;">Workflow outline</h4>
+          <ul>
+            <li>Webhook trigger (form submit) → schema validation</li>
+            <li>Deduplicate by email/domain → merge logic</li>
+            <li>Enrichment (company info, role, scoring)</li>
+            <li>CRM upsert + pipeline stage + task creation</li>
+            <li>Failure alerts + retry strategy + logging</li>
+          </ul>
+
+          <h4 style="margin-top:14px;">Outcome</h4>
+          <ul>
+            <li>Reduced manual entry and duplicate leads</li>
+            <li>Standardized fields + reliable routing</li>
+            <li>Visibility with audit logs and notifications</li>
+          </ul>
+        `
+      },
+      case2: {
+        title: "02 — Support Triage + Auto-Reply",
+        body: `
+          <h4>Use case</h4>
+          <p style="color: rgba(255,255,255,.78); line-height:1.65; margin:0;">
+            Automatically triage incoming tickets, tag them, route to the right team, and generate concise summaries.
+          </p>
+
+          <h4 style="margin-top:14px;">Workflow outline</h4>
+          <ul>
+            <li>Email/helpdesk trigger → spam filtering</li>
+            <li>Classification (topic, urgency, customer tier)</li>
+            <li>Routing rules + SLA timers</li>
+            <li>Auto-reply acknowledging request + next steps</li>
+            <li>Escalations on SLA risk + daily backlog report</li>
+          </ul>
+        `
+      },
+      case3: {
+        title: "03 — Daily KPI Reporting",
+        body: `
+          <h4>Use case</h4>
+          <p style="color: rgba(255,255,255,.78); line-height:1.65; margin:0;">
+            Pull metrics from multiple tools, normalize data, and send a daily summary to stakeholders.
+          </p>
+
+          <h4 style="margin-top:14px;">Workflow outline</h4>
+          <ul>
+            <li>Schedule trigger</li>
+            <li>Fetch data from APIs (ads, CRM, payments, analytics)</li>
+            <li>Transform + aggregate → store in Sheets/DB</li>
+            <li>Generate formatted report → email/Slack</li>
+            <li>Backfill support + anomaly alerts</li>
+          </ul>
+        `
+      },
+      case4: {
+        title: "04 — Invoice → Accounting → Notifications",
+        body: `
+          <h4>Use case</h4>
+          <p style="color: rgba(255,255,255,.78); line-height:1.65; margin:0;">
+            Sync invoices to accounting tools with validation, approvals, and client notifications.
+          </p>
+
+          <h4 style="margin-top:14px;">Workflow outline</h4>
+          <ul>
+            <li>Invoice trigger (Stripe/Xero/QuickBooks/etc.)</li>
+            <li>Validation (tax, currency, line items)</li>
+            <li>Approval gate for exceptions</li>
+            <li>Accounting sync + receipt storage</li>
+            <li>Status notifications to finance and customers</li>
+          </ul>
+        `
+      },
+      case5: {
+        title: "05 — Content Pipeline (AI + Human Review)",
+        body: `
+          <h4>Use case</h4>
+          <p style="color: rgba(255,255,255,.78); line-height:1.65; margin:0;">
+            Generate drafts with AI, run checks, and publish only after human approval.
+          </p>
+
+          <h4 style="margin-top:14px;">Workflow outline</h4>
+          <ul>
+            <li>Idea intake → AI draft + outline</li>
+            <li>Quality checks (tone, length, links)</li>
+            <li>Human review step (approval/changes)</li>
+            <li>Schedule + publish (CMS/social/email)</li>
+            <li>Archive + analytics tracking</li>
+          </ul>
+        `
+      }
+    };
+
+    const backdrop = document.getElementById("modalBackdrop");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalBody = document.getElementById("modalBody");
+    const modalClose = document.getElementById("modalClose");
+
+    document.querySelectorAll("[data-modal]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const key = btn.getAttribute("data-modal");
+        const data = CASES[key];
+        if(!data) return;
+
+        modalTitle.textContent = data.title;
+        modalBody.innerHTML = data.body;
+
+        backdrop.style.display = "block";
+        backdrop.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      });
+    });
+
+    function closeModal(){
+      backdrop.style.display = "none";
+      backdrop.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    modalClose.addEventListener("click", closeModal);
+    backdrop.addEventListener("click", (e) => {
+      if(e.target === backdrop) closeModal();
+    });
+    window.addEventListener("keydown", (e) => {
+      if(e.key === "Escape") closeModal();
+    });
+  </script>
 </body>
 </html>
